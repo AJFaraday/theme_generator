@@ -11,9 +11,27 @@
     <h1>Automatic Music Theme Generator</h1>
 
     <div id="score"></div>
+    <br/>
+
+
+    <div id="form">
+      <label for="max_jump">Biggest melodic jump (0 = same note, 7 = octave):</label>
+
+      <input type="number" id="max_jump" name="max_jump" value="2" min="0" max="7">
+
+      <br clear="both"/>
+      <input type="button" value="Customise" id="customise_button">
+    </div>
+
 
     <script type="text/javascript">
-      ThemeGen.draw_easy_score();
+      ThemeGen.draw_score();
+      var btn = document.getElementById('customise_button');
+      btn.addEventListener('click', function () {
+        ThemeGen.biggest_step = parseInt(document.getElementById('max_jump').value);
+        document.getElementById('score').innerHTML = '';
+        ThemeGen.draw_score();
+      });
     </script>
   </body>
 </html>
